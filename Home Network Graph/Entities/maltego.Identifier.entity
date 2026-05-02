@@ -1,0 +1,10 @@
+<MaltegoEntity id="maltego.Identifier" displayName="Identifier" displayNamePlural="Identifiers" description="A general identifier used for distinguishing entities. Note that instances of identifiers in isolation are in general not to be treated as unique or unambiguously distinguishing an associated entity." category="Personal" smallIconResource="AccessCard" largeIconResource="AccessCard" allowedRoot="false" conversionOrder="2147483647" visible="true">
+   <Properties value="is_partial" displayValue="is_partial">
+      <Groups/>
+      <Fields>
+         <Field name="is_partial" type="boolean" nullable="true" hidden="false" readonly="false" description="" displayName="Is Partial">
+            <SampleValue>false</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

@@ -1,0 +1,38 @@
+<MaltegoEntity id="maltego.Location" displayName="Location" displayNamePlural="Locations" description="A location on Mother Earth" category="Locations" smallIconResource="Location" largeIconResource="Location" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="location.name" displayValue="location.name">
+      <Groups/>
+      <Fields>
+         <Field name="location.name" type="string" nullable="true" hidden="false" readonly="false" description="" evaluator="maltego.replace" displayName="Name">
+            <DefaultValue>$trim($property(city), $property(country))</DefaultValue>
+            <SampleValue></SampleValue>
+         </Field>
+         <Field name="country" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Country">
+            <SampleValue>Germany</SampleValue>
+         </Field>
+         <Field name="city" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="City">
+            <SampleValue>Munich</SampleValue>
+         </Field>
+         <Field name="streetaddress" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Street Address">
+            <SampleValue></SampleValue>
+         </Field>
+         <Field name="location.area" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Area">
+            <SampleValue></SampleValue>
+         </Field>
+         <Field name="location.areacode" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Area Code">
+            <SampleValue></SampleValue>
+         </Field>
+         <Field name="countrycode" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Country Code">
+            <SampleValue>DE</SampleValue>
+         </Field>
+         <Field name="longitude" type="double" nullable="true" hidden="false" readonly="false" description="" displayName="Longitude">
+            <SampleValue>0.0</SampleValue>
+         </Field>
+         <Field name="latitude" type="double" nullable="true" hidden="false" readonly="false" description="" displayName="Latitude">
+            <SampleValue>0.0</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+   <Overlays>
+      <Overlay propertyName="countrycode" position="SW" type="image"/>
+   </Overlays>
+</MaltegoEntity>

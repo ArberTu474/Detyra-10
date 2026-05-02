@@ -1,0 +1,10 @@
+<MaltegoEntity id="maltego.Device" displayName="Device" displayNamePlural="Devices" description="A device such as a phone or camera" category="Devices" smallIconResource="RemoteControl" largeIconResource="RemoteControl" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties image="device" value="device" displayValue="device">
+      <Groups/>
+      <Fields>
+         <Field name="device" type="string" nullable="true" hidden="false" readonly="false" description="device" displayName="Device">
+            <SampleValue>Device</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

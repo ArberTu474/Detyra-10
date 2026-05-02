@@ -1,0 +1,13 @@
+<MaltegoEntity id="maltego.Phrase" displayName="Phrase" displayNamePlural="Phrases" description="Any text or part thereof" category="Personal" smallIconResource="Phrase" largeIconResource="Phrase" allowedRoot="true" conversionOrder="10000" visible="true">
+   <Converter>
+      <Value><![CDATA[.*]]></Value>
+   </Converter>
+   <Properties value="text" displayValue="text">
+      <Groups/>
+      <Fields>
+         <Field name="text" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Text">
+            <SampleValue>Some phrase</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

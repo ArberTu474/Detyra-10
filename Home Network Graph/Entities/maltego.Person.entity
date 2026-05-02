@@ -1,0 +1,24 @@
+<MaltegoEntity id="maltego.Person" displayName="Person" displayNamePlural="People" description="Entity representing a human" category="Personal" smallIconResource="Person" largeIconResource="Person" allowedRoot="true" conversionOrder="50" visible="true">
+   <Converter>
+      <Value><![CDATA[(\p{Lu}{1,15}\p{Ll}{0,15}) (\p{Lu}{0,15}\p{Ll}{0,15} *\p{Lu}{0,15}\p{Ll}{0,15} *\p{Lu}{0,15}\p{Ll}{0,15})]]></Value>
+      <RegexGroups>
+         <RegexGroup property="person.firstnames"/>
+         <RegexGroup property="person.lastname"/>
+      </RegexGroups>
+   </Converter>
+   <Properties value="person.fullname" displayValue="person.fullname">
+      <Groups/>
+      <Fields>
+         <Field name="person.fullname" type="string" nullable="true" hidden="false" readonly="false" description="" evaluator="maltego.replace" displayName="Full Name">
+            <DefaultValue>$trim($property(person.firstnames) $property(person.lastname))</DefaultValue>
+            <SampleValue></SampleValue>
+         </Field>
+         <Field name="person.firstnames" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="First Names">
+            <SampleValue>John</SampleValue>
+         </Field>
+         <Field name="person.lastname" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Surname">
+            <SampleValue>Doe</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

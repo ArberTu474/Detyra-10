@@ -1,0 +1,9 @@
+<MaltegoEntity id="maltego.OnlineIdentifier" displayName="Online Identifier" displayNamePlural="Online Identifiers" description="An identifier used in an online context to distinguish individuals or entities." category="Personal" smallIconResource="AccessCard" largeIconResource="AccessCard" allowedRoot="false" conversionOrder="2147483647" visible="true">
+   <BaseEntities>
+      <BaseEntity>maltego.Identifier</BaseEntity>
+   </BaseEntities>
+   <Properties displayValue="is_partial">
+      <Groups/>
+      <Fields/>
+   </Properties>
+</MaltegoEntity>
